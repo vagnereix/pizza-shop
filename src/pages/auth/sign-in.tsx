@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
@@ -18,13 +18,17 @@ const signInFormSchema = z.object({
 type SignInFormValues = z.infer<typeof signInFormSchema>
 
 export function SignIn() {
+  const [URLSearchParams] = useSearchParams()
+
   const {
-    reset,
     register,
     handleSubmit,
     formState: { isSubmitting, errors },
   } = useForm<SignInFormValues>({
     resolver: zodResolver(signInFormSchema),
+    defaultValues: {
+      email: URLSearchParams.get('email') ?? '',
+    },
   })
 
   const { mutateAsync: authenticate } = useMutation({
@@ -33,7 +37,7 @@ export function SignIn() {
 
   async function handleSignIn(data: SignInFormValues) {
     try {
-      authenticate({
+      await authenticate({
         email: data.email,
       })
 
@@ -43,8 +47,6 @@ export function SignIn() {
           onClick: () => handleSignIn(data),
         },
       })
-
-      reset()
     } catch (error) {
       console.log(error)
       toast.error('Credenciais inválidas.')
