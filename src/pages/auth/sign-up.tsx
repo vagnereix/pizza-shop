@@ -22,7 +22,6 @@ type SignUpFormValues = z.infer<typeof signUpFormSchema>
 
 export function SignUp() {
   const {
-    reset,
     register,
     handleSubmit,
     formState: { isSubmitting, errors },
