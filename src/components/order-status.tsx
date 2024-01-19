@@ -18,7 +18,7 @@ const orderStatusMap: Record<
   pending: { description: 'Pendente', background: 'bg-slate-400' },
   canceled: { description: 'Cancelado', background: 'bg-rose-500' },
   processing: { description: 'Em preparo', background: 'bg-amber-500' },
-  delivering: { description: 'Entregando', background: 'bg-amber-500' },
+  delivering: { description: 'Em entrega', background: 'bg-amber-500' },
   delivered: { description: 'Entregue', background: 'bg-emerald-500' },
 }
 
