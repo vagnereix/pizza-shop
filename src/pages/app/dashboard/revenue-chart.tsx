@@ -1,11 +1,8 @@
-// interface RevenueChartProps {}
-
 import {
   CartesianGrid,
   Line,
   LineChart,
   ResponsiveContainer,
-  Tooltip,
   XAxis,
   YAxis,
 } from 'recharts'
@@ -18,6 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { formatter } from '@/lib/utils'
 
 const data = [
   {
@@ -71,12 +69,7 @@ export function RevenueChart() {
               axisLine={false}
               tickLine={false}
               width={80}
-              tickFormatter={(value) =>
-                value.toLocaleString('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL',
-                })
-              }
+              tickFormatter={(value) => formatter.format(value)}
             />
 
             <CartesianGrid vertical={false} className="stroke-muted" />
