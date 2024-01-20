@@ -18,6 +18,8 @@ import {
 } from '@/components/ui/table'
 import { formatter, getDistanceToNow } from '@/lib/utils'
 
+import { OrdersDetailsSkeleton } from './order-details-skeleton'
+
 interface OrderDetailsProps {
   orderId: string
   open: boolean
@@ -37,7 +39,7 @@ export function OrderDetails({ orderId, open }: OrderDetailsProps) {
         <DialogDescription>Detalhes do pedido</DialogDescription>
       </DialogHeader>
 
-      {order && (
+      {order ? (
         <div className="space-y-6">
           <Table>
             <TableBody>
@@ -62,6 +64,13 @@ export function OrderDetails({ orderId, open }: OrderDetailsProps) {
                 </TableCell>
                 <TableCell className="flex justify-end">
                   {order.customer.phone ?? 'Não informado'}
+                </TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell className="text-muted-foreground">E-mail</TableCell>
+                <TableCell className="flex justify-end">
+                  {order.customer.email}
                 </TableCell>
               </TableRow>
 
@@ -113,6 +122,8 @@ export function OrderDetails({ orderId, open }: OrderDetailsProps) {
             </TableFooter>
           </Table>
         </div>
+      ) : (
+        <OrdersDetailsSkeleton />
       )}
     </DialogContent>
   )
