@@ -8,29 +8,6 @@ import colors from 'tailwindcss/colors'
 import { getPopularProducts } from '@/api/get-popular-products'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
-const data = [
-  {
-    product: 'Pizza de calabresa',
-    amount: 23,
-  },
-  {
-    product: 'Pizza de frango',
-    amount: 15,
-  },
-  {
-    product: 'Pizza de bacon',
-    amount: 10,
-  },
-  {
-    product: 'Pizza de 4 queijos',
-    amount: 5,
-  },
-  {
-    product: 'Pizza de portuguesa',
-    amount: 3,
-  },
-]
-
 const COLORS = [
   colors.sky[500],
   colors.violet[500],
